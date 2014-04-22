@@ -1,3 +1,8 @@
+/*Modelo de uso: java CustoSondagemLinear <Numero de chaves a inserir>
+ * ou            java CustoSondagemLinear <Numero de chaves a inserir> <Tamanho da tabela>
+ * Caso não passe o tamanho da tabela, essa tera tamanho 997
+ * */
+
 public class CustoSondagemLinear {
 
    public static void main(String[] args) {
@@ -39,3 +44,10 @@ public class CustoSondagemLinear {
    }
 
 }
+
+/*Observou-se que, em ambos os casos, os valores da proposicao M tendem a limitar
+*superiormente e inferiormente os valores observado pelas funcoes averageSearchHit
+*e averageSearchMiss respectivamente no entanto, quanto maior o alpha, mais se aproximam
+*os valores do averageSearchHit e da averageSearchMiss dos valores da proposicao M.
+* No entanto para alpha pequeno, o valor de averageSearchMiss tende a se afastar
+* */

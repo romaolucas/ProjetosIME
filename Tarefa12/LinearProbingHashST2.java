@@ -38,7 +38,7 @@ public class LinearProbingHashST2<Key, Value> {
    }
 
    public Value get(Key key) {
-      for (int i = hash(key); keys[i] != null; i = (i + 1) % M){ 
+      for (int i = hash(key); keys[i] != null; i = (i + 1) % M) { 
          k++;
          if (keys[i].equals(key))
             return vals[i];
@@ -63,21 +63,23 @@ public class LinearProbingHashST2<Key, Value> {
 
    public double propositionMMiss() {
       double alpha = (double) N/M;
-      return (1 + 1/Math.pow((1 - alpha), 2))/2;
+      return (1 + 1/((1 - alpha)*(1- alpha)))/2;
    }
 
    public double averageSearchMiss() {
-      int k = 0;
-      for (int i = 0; i < M - 1; i++) {
+      k = 0;
+      int i = 0;
+      while (i < M - 1) {
          if (keys[i] != null) {
             int j = i;
-            while (keys[j + 1] != null)
+            while (keys[(j + 1) % M] != null) 
                j = (j + 1) % M;
             if (j  > i) i = j;
             else i = M;
             k++;
          }
+            i++;
       }
-      return (double) k/N;
+      return (double) N/k;
    }
 }
