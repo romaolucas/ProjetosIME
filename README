@@ -1,0 +1,23 @@
+Nessa branch estão todos os meus eps de MAC-122.
+
+EP1: Turtledorm (jogo baseado no Lightsout)
+Relembrar algumas coisas de programação e usar álgebra linear para encontrar a solução ótima
+
+EP2: Mudancas em imagens .pgn
+Trabalhar com structs, alocação de memória, recursão e lista ligada.
+
+EP3: Calculadora polonesa
+Trabalhar com pilhas. Recebia uma expressão na ordem posfixa (2 2 +, por exemplo)
+e calculava a expressao.
+Obs.: tentar desenvolver um analex para essa calculadora e substituir o do coelho.
+
+EP4: Calculadora
+Trabalhar com pilhas e filas. Recebia uma expressão e calculava seu valor. Agora,
+podia usar variáveis que ficavam guardadas numa lista ligada (TS simples).
+Obs.: Tentar resolver o memory leak e o problema com expressão vazia.
+
+EP5: IMDB
+Trabalhar com busca de palavras, recursão, lista ligadas e tudo mais. Recebia uma lista
+de filmes e você poderia inserir, deletar, buscar filmes e ordenar a lista.
+Obs: Arrumar o loop infinito ao limpar a lista e tentar resolver o problema do Quicksort
+(depois de usá-lo, o merge entrava em loop)
