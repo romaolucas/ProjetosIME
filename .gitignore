@@ -1,0 +1,7 @@
+*.class
+
+#Package
+*.jar
+*.war
+*.ear
+
