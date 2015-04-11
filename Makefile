@@ -1,11 +1,14 @@
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic -std=c99 -g
 
-teste: main.c digraph.o dfs.o
+blocks: main.c digraph.o dfs.o stack.o
 	$(CC) $^ -o $@ $(CFLAGS) 
 
-dfs.o: dfs.c digraph.o dfs.h digraph.h
+dfs.o: dfs.c dfs.h stack.h digraph.h
 	$(CC) $(CFLAGS) -c dfs.c
+
+stack.o: stack.c stack.h digraph.h
+	$(CC) $(CFLAGS) -c stack.c
 
 digraph.o: digraph.c digraph.h
 	$(CC) $(CFLAGS) -c digraph.c 

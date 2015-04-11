@@ -9,7 +9,8 @@ int main() {
     Digraph G = initDigraph(V);
     readDigraph(G);
     DFS(G);
-    printf("No grafo ha %d vertices de corte e %d pontes\n", cutvertex, bridge);
+    printDigraph(G);
+    printf("No grafo ha %d vertices de cortes\n", cutvertex);
     freeDigraph(G);
     return 0;
 }

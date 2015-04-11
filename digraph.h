@@ -9,6 +9,7 @@ struct node {
     Vertex w;
     Block block;
     link next;
+    link antiparallel;
 };
 
 struct digraph {
@@ -24,7 +25,7 @@ Digraph initDigraph(int V);
 
 void readDigraph(Digraph G);
 
-void insertArc(Digraph G, Vertex v, Vertex w);
+void printDigraph(Digraph G);
 
 void freeDigraph(Digraph G);
 

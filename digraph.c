@@ -4,14 +4,17 @@
 #define TRUE 1
 #define FALSE 0
 
+static link *last;
+
 Digraph initDigraph(int V) {
     Digraph G = malloc(sizeof( *G));
     G->V = V;
     G->A = 0;
     G->adj = malloc(V * sizeof(link));
+    last = malloc(V * sizeof(link));
     G->degrees = calloc(V ,sizeof(int));
     for (Vertex v = 0; v < V; v++)
-        G->adj[v] = NULL;
+        last[v] = G->adj[v] = NULL;
     return G;
 }
 
@@ -21,17 +24,43 @@ void readDigraph(Digraph G) {
         for (int k = 0; k < G->degrees[v]; k++){
             Vertex w;
             scanf("%d", &w);
-            insertArc(G, v, w);
+            if (v < w) {
+                link new = malloc(sizeof(link));
+                link antinew = malloc(sizeof(link));
+                new->w = w;
+                antinew->w = v;
+                new->antiparallel = antinew;
+                antinew->antiparallel = new;
+                if (G->adj[v] == NULL) {
+                    last[v] = new;
+                    new->next = NULL;
+                    G->adj[v] = new;
+                }
+                else {
+                    last[v]->next = new;
+                    new->next = NULL;
+                    last[v] = new;
+                }
+                if (G->adj[w] == NULL) {
+                    last[w] = antinew;
+                    antinew->next = NULL;
+                    G->adj[w] = antinew;
+                }
+                else {
+                    last[w]->next = antinew;
+                    antinew->next = NULL;
+                    last[w] = antinew;
+                }
+            }
         }
     }
+    free(last);
 }
 
-void insertArc(Digraph G, Vertex v, Vertex w) {
-    link new = malloc(sizeof( struct node));
-    new->w = w;
-    new->block = 0;
-    new->next = G->adj[v];
-    G->adj[v] = new;
+void printDigraph(Digraph G) {
+    for (Vertex v = 0; v < G->V; v++)
+        for (link a = G->adj[v]; a != NULL; a = a->next)
+            printf("arco: %d - %d bloco: %d\n", v, a->w, a->block);
 }
 
 void freeDigraph(Digraph G) {
