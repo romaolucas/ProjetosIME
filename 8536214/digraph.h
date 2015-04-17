@@ -12,6 +12,14 @@ struct node {
     link antiparallel;
 };
 
+typedef struct CutList *cutList;
+
+struct CutList {
+    Vertex v;
+    int block;
+    cutList next;
+};
+
 struct digraph {
     int V;
     int A;
@@ -28,5 +36,11 @@ void readDigraph(Digraph G);
 void printDigraph(Digraph G);
 
 void freeDigraph(Digraph G);
+
+cutList addCutVertex(Vertex u);
+
+void freeCutList();
+
+extern cutList cutVertex;
 
 #endif

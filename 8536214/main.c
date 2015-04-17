@@ -10,7 +10,8 @@ int main() {
     readDigraph(G);
     DFS(G);
     printDigraph(G);
-    printf("No grafo ha %d vertices de cortes\n", cutvertex);
+    printf("%d\n", cutvertex);
+    buildNewDigraph(G);
     freeDigraph(G);
     return 0;
 }

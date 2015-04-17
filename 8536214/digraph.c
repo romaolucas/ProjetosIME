@@ -4,21 +4,23 @@
 #define TRUE 1
 #define FALSE 0
 
-static link *last;
+cutList cutVertex = NULL;
 
 Digraph initDigraph(int V) {
     Digraph G = malloc(sizeof( *G));
     G->V = V;
     G->A = 0;
     G->adj = malloc(V * sizeof(link));
-    last = malloc(V * sizeof(link));
     G->degrees = calloc(V ,sizeof(int));
-    for (Vertex v = 0; v < V; v++)
-        last[v] = G->adj[v] = NULL;
+    for (Vertex v = 0; v < V; v++) 
+        G->adj[v] = NULL;
     return G;
 }
 
 void readDigraph(Digraph G) {
+    link *last = malloc(G->V* sizeof(link));
+    for (Vertex v = 0; v < G->V; v++)
+        last[v] = NULL;
     for (Vertex v = 0; v < G->V; v++) {
         scanf("%d", &G->degrees[v]);
         for (int k = 0; k < G->degrees[v]; k++){
@@ -58,9 +60,13 @@ void readDigraph(Digraph G) {
 }
 
 void printDigraph(Digraph G) {
-    for (Vertex v = 0; v < G->V; v++)
+    printf("%d\n", G->V);
+    for (Vertex v = 0; v < G->V; v++) {
+        printf("%d ", G->degrees[v]);
         for (link a = G->adj[v]; a != NULL; a = a->next)
-            printf("arco: %d - %d bloco: %d\n", v, a->w, a->block);
+            printf("%d ", a->block);
+        printf("\n");
+    }   
 }
 
 void freeDigraph(Digraph G) {
@@ -69,7 +75,6 @@ void freeDigraph(Digraph G) {
         link a = G->adj[i];
         while (a != NULL) {
             link aux = a;
-            printf("Liberando o %d %d \n", i, aux->w);
             a = a->next;
             free(aux);
         }
@@ -78,4 +83,19 @@ void freeDigraph(Digraph G) {
     free(G);
 }
 
+cutList addCutVertex(Vertex u) {
+    cutList new = malloc(sizeof(cutList));
+    new->next = cutVertex;
+    new->v = u;
+    cutVertex = new;
+    return cutVertex;
+}
 
+void freeCutList() {
+    cutList p = cutVertex;
+    while (p != NULL) {
+        cutList q = p;
+        p = p->next;
+        free(q);
+    }
+}

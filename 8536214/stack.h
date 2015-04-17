@@ -15,6 +15,7 @@ struct stack {
 
 typedef struct stack *Stack;
 
+
 Stack stackInit();
 
 void push(Stack s, link a);

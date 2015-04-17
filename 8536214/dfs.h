@@ -7,8 +7,12 @@ void DFS(Digraph G);
 
 void DFSVisit(Digraph G, Vertex u);
 
+int min(int a, int b);
+
 void assignBlocks(Stack s, link edge);
 
-extern int cutvertex;
+void buildNewDigraph();
+
+extern int cutvertex, blocks;
 
 #endif
